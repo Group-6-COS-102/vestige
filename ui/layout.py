@@ -154,17 +154,3 @@ def create_layout(app):
     fourth.pack(fill="y", pady=(10))
 
     return main_frame
-
-
-# ---------------- APP WINDOW ---------------- #
-
-app = ctk.CTk()
-
-app.geometry("1200x650")
-app.title("Vestige")
-
-# CREATE THE LAYOUT
-create_layout(app)
-
-# START APP
-app.mainloop()
