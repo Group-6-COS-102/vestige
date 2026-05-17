@@ -21,7 +21,7 @@ def create_layout(app):
     # ---------------- LOGO ---------------- #
 
     app_icon = ctk.CTkImage(
-        Image.open("ves.PNG"),
+        Image.open("assets\pictures\logo.PNG"),
         size=(20, 20)
     )
 
@@ -33,7 +33,7 @@ def create_layout(app):
         font=("Poppins", 15, "bold")
     )
 
-    logo_label.pack(pady=(20,10), padx=(5,40))
+    logo_label.pack(pady=(20, 10), padx=(5, 40))
 
     app_icon = ctk.CTkImage(
         Image.open("ggg.PNG"),
@@ -41,12 +41,12 @@ def create_layout(app):
     logo_label = ctk.CTkLabel(
         sidebar,
         image=app_icon,
-        text="  Profile" ,
+        text="  Profile",
         compound="left",
         font=("Poppins", 15, "bold")
     )
 
-    logo_label.pack(pady=(0), padx=(0,60))
+    logo_label.pack(pady=(0), padx=(0, 60))
 
     # ---------------- NAV BUTTON FUNCTION ---------------- #
 
@@ -119,17 +119,15 @@ def create_layout(app):
     right_sidebar.pack(side="right", fill="y")
 
     Third = ctk.CTkFrame(
-    right_sidebar,
-    width=170,
-    height=170,
-    
-    corner_radius=10,
-    fg_color="#FFFFFF",
+        right_sidebar,
+        width=170,
+        height=170,
+
+        corner_radius=10,
+        fg_color="#FFFFFF",
     )
-    
 
-
-    Third.pack( fill="y", pady=(40,40))
+    Third.pack(fill="y", pady=(40, 40))
     # SAMPLE CARDS
     for i in range(3):
 
@@ -142,26 +140,18 @@ def create_layout(app):
         )
 
         card.pack(pady=8)
-        
-        
 
     fourth = ctk.CTkFrame(
-    right_sidebar,
-    width=170,
-    height=90,
-    
-    corner_radius=10,
-    fg_color="#FFFFFF",
-    
+        right_sidebar,
+        width=170,
+        height=90,
+
+        corner_radius=10,
+        fg_color="#FFFFFF",
+
     )
 
-    fourth.pack( fill="y", pady=(10))
-        
-
-        
-
-       
-
+    fourth.pack(fill="y", pady=(10))
 
     return main_frame
 
