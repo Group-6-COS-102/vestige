@@ -8,25 +8,25 @@ def create_layout(app):
 
     # ---------------- LEFT SIDEBAR ---------------- #
 
-    sidebar = ctk.CTkFrame(
+    left_sidebar = ctk.CTkFrame(
         app,
         width=200,
         corner_radius=0,
         fg_color="#1E1E2E"
     )
 
-    sidebar.pack_propagate(False)
-    sidebar.pack(side="left", fill="y")
+    left_sidebar.pack_propagate(False)
+    left_sidebar.pack(side="left", fill="y")
 
     # ---------------- LOGO ---------------- #
 
     app_icon = ctk.CTkImage(
-        Image.open("assets\icons\logo.PNG"),
+        Image.open("assets/icons/logo.PNG"),
         size=(20, 20)
     )
 
     logo_label = ctk.CTkLabel(
-        sidebar,
+        left_sidebar,
         image=app_icon,
         text=" Vestige",
         compound="left",
@@ -36,10 +36,10 @@ def create_layout(app):
     logo_label.pack(pady=(20, 10), padx=(5, 40))
 
     app_icon = ctk.CTkImage(
-        Image.open("assets\pictures\profile.PNG"),
-        size=(50, 50))
+        Image.open("assets/pictures/profile.PNG"),
+        size=(30, 30))
     logo_label = ctk.CTkLabel(
-        sidebar,
+        left_sidebar,
         image=app_icon,
         text="  Profile",
         compound="left",
@@ -48,9 +48,15 @@ def create_layout(app):
 
     logo_label.pack(pady=(0), padx=(0, 60))
 
+    top_left = ctk.CTkFrame(left_sidebar, fg_color="transparent")
+    top_left.pack(fill="x", side="top")
+
+    bottom_left = ctk.CTkFrame(left_sidebar, fg_color="transparent")
+    bottom_left.pack(fill="x", side="bottom", pady=10)
+
     # ---------------- NAV BUTTON FUNCTION ---------------- #
 
-    def nav_button(text, image_path):
+    def nav_button(text, image_path, parent):
 
         icon = ctk.CTkImage(
             Image.open(image_path),
@@ -58,7 +64,7 @@ def create_layout(app):
         )
 
         button = ctk.CTkButton(
-            sidebar,
+            parent,
             image=icon,
             text=text,
             height=45,
@@ -74,14 +80,14 @@ def create_layout(app):
 
     # ---------------- BUTTONS ---------------- #
 
-    nav_button("Home", "assets/icons/home.png")
-    nav_button("Then Vs Now", "assets/icons/tvn.png")
-    nav_button("Timelines", "assets/icons/time.png")
-    nav_button("Lost Traditions", "assets/icons/lost.png")
-    nav_button("Gallery", "assets/icons/gallery.png")
-    nav_button("About", "assets/icons/about.png")
-    nav_button("Settings", "assets/icons/setting.png")
-    nav_button("Log out", "assets/icons/logout.png")
+    nav_button("Home", "assets/icons/home.png", top_left)
+    nav_button("Then Vs Now", "assets/icons/tvn.png", top_left)
+    nav_button("Timelines", "assets/icons/time.png", top_left)
+    nav_button("Lost Traditions", "assets/icons/lost.png", top_left)
+    nav_button("Gallery", "assets/icons/gallery.png", top_left)
+    nav_button("About", "assets/icons/about.png", top_left)
+    nav_button("Settings", "assets/icons/setting.png", bottom_left)
+    nav_button("Log out", "assets/icons/logout.png", bottom_left)
 
     # ---------------- MAIN AREA ---------------- #
 
@@ -110,7 +116,7 @@ def create_layout(app):
 
     right_sidebar = ctk.CTkFrame(
         app,
-        width=200,
+        width=300,
         corner_radius=0,
         fg_color="#525258"
     )
@@ -118,9 +124,15 @@ def create_layout(app):
     right_sidebar.pack_propagate(False)
     right_sidebar.pack(side="right", fill="y")
 
+    top_right = ctk.CTkFrame(right_sidebar, fg_color="transparent")
+    top_right.pack(fill="x", side="top")
+
+    bottom_right = ctk.CTkFrame(right_sidebar, fg_color="transparent")
+    bottom_right.pack(fill="x", side="bottom", pady=10)
+
     Third = ctk.CTkFrame(
-        right_sidebar,
-        width=170,
+        top_right,
+        width=240,
         height=170,
         corner_radius=10,
         fg_color="#FFFFFF",
@@ -131,8 +143,8 @@ def create_layout(app):
     for i in range(3):
 
         card = ctk.CTkFrame(
-            right_sidebar,
-            width=170,
+            top_right,
+            width=240,
             height=70,
             corner_radius=10,
             fg_color="white"
@@ -141,8 +153,8 @@ def create_layout(app):
         card.pack(pady=8)
 
     fourth = ctk.CTkFrame(
-        right_sidebar,
-        width=170,
+        bottom_right,
+        width=240,
         height=90,
 
         corner_radius=10,
@@ -152,4 +164,4 @@ def create_layout(app):
 
     fourth.pack(fill="y", pady=(10))
 
-    return main_frame
+    return main_frame, left_sidebar, right_sidebar, Third, fourth

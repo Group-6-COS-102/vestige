@@ -29,7 +29,7 @@ class SignupPage(ctk.CTkFrame):
         ).place(relx=0.5, rely=0.5, anchor="center")
 
         ctk.CTkLabel(
-            right,
+            panel,
             text="Sign Up",
             font=("Konkhmer Sleokchher", 26, "bold")
         ).place(relx=0.5, rely=0.12, anchor="center")
@@ -56,6 +56,8 @@ class SignupPage(ctk.CTkFrame):
             panel, text="Sign Up",
             fg_color=PRIMARY_BLUE,
             text_color=TEXT_WHITE,
+            width=150,
+            height=35,
             command=self.signup_user
         ).place(relx=0.5, rely=0.75, anchor="center")
 
@@ -68,7 +70,7 @@ class SignupPage(ctk.CTkFrame):
             text_color=PRIMARY_BLUE,
             hover=False,
             command=lambda: self.controller.show_page(LoginPage)
-        ).place(relx=0.5, rely=0.81, anchor="center")
+        ).place(relx=0.5, rely=0.85, anchor="center")
 
         self.message_label = ctk.CTkLabel(panel, text="")
         self.message_label.place(relx=0.5, rely=0.68, anchor="center")

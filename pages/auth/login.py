@@ -28,7 +28,7 @@ class LoginPage(ctk.CTkFrame):
         ).place(relx=0.5, rely=0.5, anchor="center")
 
         ctk.CTkLabel(
-            right,
+            panel,
             text="Login",
             font=("Konkhmer Sleokchher", 26, "bold"),
             text_color=TEXT_WHITE
@@ -59,6 +59,8 @@ class LoginPage(ctk.CTkFrame):
             panel, text="Login",
             fg_color=PRIMARY_BLUE,
             text_color=TEXT_WHITE,
+            width=150,
+            height=35,
             command=self.login_user
         ).place(relx=0.5, rely=0.75, anchor="center")
 
@@ -72,7 +74,7 @@ class LoginPage(ctk.CTkFrame):
             text_color=TEXT_WHITE,
             hover=False,
             command=lambda: self.controller.show_page(SignupPage)
-        ).place(relx=0.5, rely=0.81, anchor="center")
+        ).place(relx=0.5, rely=0.85, anchor="center")
 
     def login_user(self):
         email = self.email_entry.get().strip()

@@ -1,4 +1,5 @@
 import customtkinter as ctk
+from PIL import Image
 
 from pages.auth.login import LoginPage
 from ui.auth_layout import create_auth_layout
@@ -15,12 +16,13 @@ class WelcomePage(ctk.CTkFrame):
         page, left, right, panel = create_auth_layout(self, panel_side="left")
         page.pack(fill="both", expand=True)
 
-        # logo placeholder
+        # large logo placeholder
         ctk.CTkLabel(
-            right,
-            text="lOGO",
-            font=("Konkhmer Sleokchher", 40, "bold")
-        ).place(relx=0.5, rely=0.5, anchor="center")
+            panel,
+            text="Logo",
+            font=("Konkhmer Sleokchher", 40, "bold"),
+            text_color="white"
+        ).place(relx=0.5, rely=0.40, anchor="center")
 
         # small logo placeholder
         ctk.CTkLabel(
@@ -33,17 +35,16 @@ class WelcomePage(ctk.CTkFrame):
         ctk.CTkLabel(
             right,
             text="Vestige",
-            font=("Konkhmer Sleokchher", 32, "bold"),
+            font=("Konkhmer Sleokchher", 50, "bold"),
             text_color="white"
         ).place(relx=0.5, rely=0.30, anchor="center")
 
         # motto
         ctk.CTkLabel(
-            panel,
-            text="Preserving Yesterday",
-            font=("Konkhmer Sleokchher", 18),
-            text_color="white"
-        ).place(relx=0.5, rely=0.40, anchor="center")
+            right,
+            text="Preserving Yesterday...",
+            font=("Konkhmer Sleokchher", 25, "bold")
+        ).place(relx=0.5, rely=0.5, anchor="center")
 
         # get started button
         ctk.CTkButton(
@@ -51,5 +52,9 @@ class WelcomePage(ctk.CTkFrame):
             text="Get Started",
             fg_color=PRIMARY_BLUE,
             text_color=TEXT_WHITE,
+            corner_radius=15,
+            width=180,
+            height=50,
+            font=("Khonkhmer Sleokchher", 18, "bold"),
             command=lambda: self.controller.show_page(LoginPage)
-        ).place(relx=0.5, rely=0.60, anchor="center")
+        ).place(relx=0.50, rely=0.68, anchor="center")
