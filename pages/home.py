@@ -1,4 +1,6 @@
 import customtkinter as ctk
+from PIL import Image
+from ui.layout import create_layout
 
 
 class HomePage(ctk.CTkFrame):
@@ -6,8 +8,6 @@ class HomePage(ctk.CTkFrame):
         super().__init__(parent)
         self.controller = controller
 
-        ctk.CTkLabel(
-            self,
-            text="Welcome to the Home Page",
-            font=("Konkhmer Sleokchher", 24, "bold")
-        ).pack(pady=20, expand=True)
+        main_frame, left_sidebar, right_sidebar, Third, fourth = create_layout(
+            self)
+        main_frame.pack(fill="both", expand=True)

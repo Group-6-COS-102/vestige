@@ -9,23 +9,24 @@ def create_auth_layout(parent, panel_side="left"):
     card = ctk.CTkFrame(
         page,
         fg_color=CARD_BLACK,
-        corner_radius=30
+        corner_radius=30,
+        bg_color=BACKGROUND_GRAY
     )
 
     card.place(relx=0.5, rely=0.5, relwidth=0.75,
                relheight=0.75, anchor="center")
 
     # left and right sides
-    left = ctk.CTkFrame(card, fg_color="transparent")
-    right = ctk.CTkFrame(card, fg_color="transparent")
+    left = ctk.CTkFrame(card, fg_color="transparent", corner_radius=0)
+    right = ctk.CTkFrame(card, fg_color="transparent", corner_radius=0)
 
-    left.place(relx=0, rely=0, relwidth=0.5, relheight=1)
-    right.place(relx=0.5, rely=0, relwidth=0.5, relheight=1)
+    left.place(relx=0.02, rely=0.02, relwidth=0.46, relheight=0.96)
+    right.place(relx=0.52, rely=0.02, relwidth=0.46, relheight=0.96)
 
     panel = ctk.CTkFrame(
         card,
         fg_color=PANEL_GRAY,
-        corner_radius=15
+        corner_radius=30
     )
 
     if panel_side == "left":
