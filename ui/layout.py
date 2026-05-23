@@ -1,32 +1,7 @@
 import customtkinter as ctk
 from PIL import Image
 
-class TimelineCard(ctk.CTkFrame):
-    def __init__(self, master, title, description, command=None, **kwargs):
-        # Keeps the styling identical to your original layout setup
-        super().__init__(master, fg_color="#2D5B94", corner_radius=15, height=105, **kwargs)
-        self.pack_propagate(False)
-        
-        self.command = command
 
-        # White status indicator dot
-        self.dot = ctk.CTkLabel(self, text="●", font=("Poppins", 16), text_color="white")
-        self.dot.place(x=15, y=12)
-
-        # Title text
-        self.card_title = ctk.CTkLabel(self, text=title, font=("Poppins", 16, "bold"), text_color="white")
-        self.card_title.place(x=40, y=12)
-
-        # Description text
-        self.card_desc = ctk.CTkLabel(self, text=description, font=("Poppins", 13), text_color="white", justify="left")
-        self.card_desc.place(x=40, y=48)
-
-        # Interactive heart button
-        self.heart_btn = ctk.CTkButton(self, text="♡", font=("Poppins", 18), text_color="white", fg_color="transparent", width=30, hover=False)
-        self.heart_btn.place(relx=0.95, rely=0.75, anchor="center")
-
-        if self.command:
-            self.bind_click_events(self.command)
 # ---------------- LAYOUT FUNCTION ---------------- #
 
 def create_layout(app):
