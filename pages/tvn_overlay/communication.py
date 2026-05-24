@@ -1,6 +1,6 @@
 import customtkinter as ctk
 
-class FashionApp(ctk.CTk):
+class Communication(ctk.CTk):
     # --- Color Palette Hex Codes as Class Constants ---
     COLOR_HEADER_BLUE = "#1d5b96"
     COLOR_TEXT_BROWN = "#8a3324"
@@ -14,7 +14,7 @@ class FashionApp(ctk.CTk):
         super().__init__()
         
         # Initialize the main window configurations
-        self.title("Fashion: Then VS Now")
+        self.title("Communication: Then VS Now")
         self.geometry("1000x750")
         
         # Set the theme and main window background color
@@ -70,18 +70,18 @@ class FashionApp(ctk.CTk):
         parent_frame.grid_rowconfigure(2, weight=1, uniform="footwear_row") 
 
         # ---------------------------------------------------------
-        # 1. CLOTHING BLOCK
+        # 1. VERBAL & SOCIAL MEDIA BLOCK
         # ---------------------------------------------------------
-        clothing_card = ctk.CTkFrame(parent_frame, fg_color=self.COLOR_CARD_BG, corner_radius=12, border_width=1, border_color="#eff6ff")
-        clothing_card.grid(row=0, column=0, sticky="nsew", pady=(0, 25))
+        com1_card = ctk.CTkFrame(parent_frame, fg_color=self.COLOR_CARD_BG, corner_radius=12, border_width=1, border_color="#eff6ff")
+        com1_card.grid(row=0, column=0, sticky="nsew", pady=(0, 25))
         
         ctk.CTkLabel(
-            clothing_card, 
-            text=c_title if c_title is not None else "Clothing Label [Null]", 
+            com1_card, 
+            text=c_title if c_title is not None else "Communication [Null]", 
             font=("Arial", 16, "bold"), text_color=self.COLOR_HEADER_BLUE
         ).pack(anchor="w", padx=15, pady=(15, 10))
 
-        c_split_box = ctk.CTkFrame(clothing_card, fg_color="transparent")
+        c_split_box = ctk.CTkFrame(com1_card, fg_color="transparent")
         c_split_box.pack(fill="x", padx=15, pady=(0, 10))
 
         if c_img is None:
@@ -92,29 +92,29 @@ class FashionApp(ctk.CTk):
 
         ctk.CTkLabel(
             c_split_box, 
-            text=c_desc1 if c_desc1 is not None else "Clothing overview details are currently unpopulated in database rows.",
+            text=c_desc1 if c_desc1 is not None else "Communication overview details are currently unpopulated in database rows.",
             font=("Arial", 12, "bold"), text_color=self.COLOR_TEXT_DARK_BROWN, wraplength=260, justify="left"
         ).pack(side="left", fill="both", expand=True, anchor="n")
 
         ctk.CTkLabel(
-            clothing_card, 
-            text=c_desc2 if c_desc2 is not None else "Extended design description block missing from the database record [Null].",
+            com1_card, 
+            text=c_desc2 if c_desc2 is not None else "Communication description block missing from the database record [Null].",
             font=("Arial", 12, "bold"), text_color=self.COLOR_TEXT_DARK_BROWN, wraplength=410, justify="left"
         ).pack(fill="both", expand=True, padx=15, pady=(10, 15))
 
         # ---------------------------------------------------------
-        # 2. ACCESSORIES BLOCK
+        # 2. Written & Accessories (Com2) BLOCK
         # ---------------------------------------------------------
-        acc_card = ctk.CTkFrame(parent_frame, fg_color=self.COLOR_CARD_BG, corner_radius=12, border_width=1, border_color="#eff6ff")
-        acc_card.grid(row=1, column=0, sticky="nsew", pady=(0, 25))
+        com2_card = ctk.CTkFrame(parent_frame, fg_color=self.COLOR_CARD_BG, corner_radius=12, border_width=1, border_color="#eff6ff")
+        com2_card.grid(row=1, column=0, sticky="nsew", pady=(0, 25))
         
         ctk.CTkLabel(
-            acc_card, 
-            text=a_title if a_title is not None else "Accessories [Null]", 
+            com2_card, 
+            text=a_title if a_title is not None else "Communication [Null]", 
             font=("Arial", 16, "bold"), text_color=self.COLOR_HEADER_BLUE
         ).pack(pady=(15, 10))
 
-        a_split_box = ctk.CTkFrame(acc_card, fg_color="transparent")
+        a_split_box = ctk.CTkFrame(com2_card, fg_color="transparent")
         a_split_box.pack(fill="both", expand=True, padx=15, pady=(0, 15))
 
         if a_img is None:
@@ -125,23 +125,23 @@ class FashionApp(ctk.CTk):
 
         ctk.CTkLabel(
             a_split_box, 
-            text=a_desc if a_desc is not None else "Accessory usage summary text is unpopulated inside the database [Null].",
+            text=a_desc if a_desc is not None else "Communication usage summary text is unpopulated inside the database [Null].",
             font=("Arial", 12, "bold"), text_color=self.COLOR_TEXT_DARK_BROWN, wraplength=280, justify="left"
         ).pack(side="left", fill="both", expand=True, anchor="n")
 
         # ---------------------------------------------------------
-        # 3. FOOTWEAR BLOCK
+        # 3. Community connection & speed (com3) BLOCK
         # ---------------------------------------------------------
-        foot_card = ctk.CTkFrame(parent_frame, fg_color=self.COLOR_CARD_BG, corner_radius=12, border_width=1, border_color="#eff6ff")
-        foot_card.grid(row=2, column=0, sticky="nsew", pady=(0, 15))
+        com_3_card = ctk.CTkFrame(parent_frame, fg_color=self.COLOR_CARD_BG, corner_radius=12, border_width=1, border_color="#eff6ff")
+        com_3_card.grid(row=2, column=0, sticky="nsew", pady=(0, 15))
         
         ctk.CTkLabel(
-            foot_card, 
-            text=f_title if f_title is not None else "Footwear [Null]", 
+            com_3_card, 
+            text=f_title if f_title is not None else "Communication [Null]", 
             font=("Arial", 16, "bold"), text_color=self.COLOR_HEADER_BLUE
         ).pack(pady=(15, 10))
 
-        f_split_box = ctk.CTkFrame(foot_card, fg_color="transparent")
+        f_split_box = ctk.CTkFrame(com_3_card, fg_color="transparent")
         f_split_box.pack(fill="both", expand=True, padx=15, pady=(0, 15))
 
         if f_img is None:
@@ -152,7 +152,7 @@ class FashionApp(ctk.CTk):
 
         ctk.CTkLabel(
             f_split_box, 
-            text=f_desc if f_desc is not None else "Footwear styling trends and history details are missing from database fields [Null].",
+            text=f_desc if f_desc is not None else "Communication details are missing from database fields [Null].",
             font=("Arial", 12, "bold"), text_color=self.COLOR_TEXT_DARK_BROWN, wraplength=280, justify="left"
         ).pack(side="left", fill="both", expand=True, anchor="n")
 
@@ -259,5 +259,5 @@ class FashionApp(ctk.CTk):
 
 # --- Application Entry Point ---
 if __name__ == "__main__":
-    app = FashionApp()
+    app = Communication()
     app.mainloop()
