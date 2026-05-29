@@ -7,31 +7,32 @@ import independence
 import digital
 
 
-
-
 # ---------------- REUSABLE TIMELINE CARD CLASS ---------------- #
 
 class TimelineCard(ctk.CTkFrame):
     def __init__(self, master, title, description, command=None, **kwargs):
         super().__init__(master, fg_color="#2D5B94", corner_radius=15, height=105, **kwargs)
         self.pack_propagate(False)
-        
+
         self.command = command
 
         # White status indicator dot
-        self.dot = ctk.CTkLabel(self, text="●", font=("Poppins", 16), text_color="white")
+        self.dot = ctk.CTkLabel(self, text="●", font=(
+            "Poppins", 16), text_color="white")
         self.dot.place(x=15, y=12)
 
         # Title text
-        self.card_title = ctk.CTkLabel(self, text=title, font=("Poppins", 16, "bold"), text_color="white")
+        self.card_title = ctk.CTkLabel(self, text=title, font=(
+            "Poppins", 16, "bold"), text_color="white")
         self.card_title.place(x=40, y=12)
 
         # Description text
-        self.card_desc = ctk.CTkLabel(self, text=description, font=("Poppins", 13), text_color="white", justify="left")
+        self.card_desc = ctk.CTkLabel(self, text=description, font=(
+            "Poppins", 13), text_color="white", justify="left")
         self.card_desc.place(x=40, y=48)
 
-        
-        self.heart_btn = ctk.CTkButton(self, text="♡", font=("Poppins", 18), text_color="white", fg_color="transparent", width=30, hover=False)
+        self.heart_btn = ctk.CTkButton(self, text="♡", font=(
+            "Poppins", 18), text_color="white", fg_color="transparent", width=30, hover=False)
         self.heart_btn.place(relx=0.95, rely=0.75, anchor="center")
 
         if self.command:
@@ -54,7 +55,7 @@ class TimelineCard(ctk.CTkFrame):
 def create_layout(app):
 
     # ---------------- MASTER SHOWPAGE ENGINE ---------------- #
-    
+
     def show_page(page_name):
         # Wipes absolutely everything inside the window clean (Sidebars, Topbars, etc.)
         for widget in app.winfo_children():
@@ -65,28 +66,31 @@ def create_layout(app):
         full_page_frame.pack(fill="both", expand=True)
 
         # TOP NAVIGATION BAR (Always visible at the top, never pushed down!)
-        nav_bar = ctk.CTkFrame(full_page_frame, fg_color="transparent", height=50)
+        nav_bar = ctk.CTkFrame(
+            full_page_frame, fg_color="transparent", height=50)
         nav_bar.pack(fill="x", padx=30, pady=(15, 0))
         nav_bar.pack_propagate(False)
 
         # Global back button that reconstructs your entire main layout view
         back_btn = ctk.CTkButton(
-            nav_bar, 
-            text="← Back to Main Menu", 
-            font=("Poppins", 13), 
+            nav_bar,
+            text="← Back to Main Menu",
+            font=("Poppins", 13),
             fg_color="#3975BD",
             command=lambda: [full_page_frame.destroy(), create_layout(app)]
         )
         back_btn.pack(side="left")
 
         # Dynamic Content Container (The sub-pages load inside this)
-        dynamic_container = ctk.CTkScrollableFrame(full_page_frame, fg_color="transparent")
-        dynamic_container.pack(fill="both", expand=True, padx=30, pady=(10, 20))
+        dynamic_container = ctk.CTkScrollableFrame(
+            full_page_frame, fg_color="transparent")
+        dynamic_container.pack(fill="both", expand=True,
+                               padx=30, pady=(10, 20))
 
         # Routing to the correct external file
         if page_name == "pre_colonial":
             pre_colonial_page.load_view(dynamic_container)
-            
+
         elif page_name == "colonial":
             colonial.load_view(dynamic_container)
 
@@ -94,9 +98,8 @@ def create_layout(app):
             independence.load_view(dynamic_container)
 
         elif page_name == "digital":
-           digital.load_view(dynamic_container)
+            digital.load_view(dynamic_container)
     # In your main script/file:
-
 
     # ---------------- LEFT SIDEBAR ---------------- #
 
@@ -113,7 +116,7 @@ def create_layout(app):
     # ---------------- LOGO ---------------- #
 
     app_icon = ctk.CTkImage(
-        Image.open("logo.png"),
+        Image.open("assets/icons/logo.png"),
         size=(20, 20)
     )
 
@@ -125,7 +128,7 @@ def create_layout(app):
         font=("Poppins", 15, "bold")
     )
 
-    logo_label.pack(pady=(20,10), padx=(5,40))
+    logo_label.pack(pady=(20, 10), padx=(5, 40))
 
     app_icon2 = ctk.CTkImage(
         Image.open("ggg.PNG"),
@@ -133,12 +136,12 @@ def create_layout(app):
     logo_label2 = ctk.CTkLabel(
         sidebar,
         image=app_icon2,
-        text="  Profile" ,
+        text="  Profile",
         compound="left",
         font=("Poppins", 15, "bold")
     )
 
-    logo_label2.pack(pady=(0), padx=(0,60)) 
+    logo_label2.pack(pady=(0), padx=(0, 60))
 
     # ---------------- NAV BUTTON FUNCTION ---------------- #
 
@@ -193,8 +196,8 @@ def create_layout(app):
     top_bar.pack(fill="x", padx=25, pady=(20, 10))
 
     quote_lbl = ctk.CTkLabel(
-        top_bar, 
-        text="\"Exploring how the past shapes the present\nand what we risk losing...\"", 
+        top_bar,
+        text="\"Exploring how the past shapes the present\nand what we risk losing...\"",
         font=("Poppins", 13, "italic"),
         text_color="#555555",
         justify="left"
@@ -202,10 +205,10 @@ def create_layout(app):
     quote_lbl.pack(side="left", anchor="w")
 
     search_bar = ctk.CTkEntry(
-        top_bar, 
-        placeholder_text="Search", 
-        width=180, 
-        height=28, 
+        top_bar,
+        placeholder_text="Search",
+        width=180,
+        height=28,
         corner_radius=14,
         fg_color="#E0E0E0",
         border_width=0,
@@ -213,7 +216,8 @@ def create_layout(app):
     )
     search_bar.pack(side="right", anchor="e", padx=10)
 
-    timeline_container = ctk.CTkFrame(main_frame, fg_color="#EBEBEB", corner_radius=20)
+    timeline_container = ctk.CTkFrame(
+        main_frame, fg_color="#EBEBEB", corner_radius=20)
     timeline_container.pack(fill="both", expand=True, padx=25, pady=(10, 20))
 
     # --- NAVIGATION CHANNELS ---
@@ -222,26 +226,29 @@ def create_layout(app):
 
     def go_to_colonial():
         show_page("colonial")
+
     def go_to_independence():
         show_page("independence")
 
     def go_to_digital_age():
         show_page("digital")
 
-
     # --- GENERATING THE CARDS USING THE TIMELINECARD CLASS ---
-    card1 = TimelineCard(timeline_container, "Pre-Colonial Era", "Traditional Kingdoms, oral storytelling, indigenous\nlanguages.", command=go_to_pre_colonial)
+    card1 = TimelineCard(timeline_container, "Pre-Colonial Era",
+                         "Traditional Kingdoms, oral storytelling, indigenous\nlanguages.", command=go_to_pre_colonial)
     card1.pack(fill="x", padx=20, pady=10)
 
-    card2 = TimelineCard(timeline_container, "Colonial Era", "Western Education and new cultural influences.", command=go_to_colonial)
+    card2 = TimelineCard(timeline_container, "Colonial Era",
+                         "Western Education and new cultural influences.", command=go_to_colonial)
     card2.pack(fill="x", padx=20, pady=10)
 
-    card3 = TimelineCard(timeline_container, "Independence", "National identity and cultural revival", command=go_to_independence)
+    card3 = TimelineCard(timeline_container, "Independence",
+                         "National identity and cultural revival", command=go_to_independence)
     card3.pack(fill="x", padx=20, pady=10)
 
-    card4 = TimelineCard(timeline_container, "Digital Age", "Modern adaptation and technological shifts.", command=go_to_digital_age)
+    card4 = TimelineCard(timeline_container, "Digital Age",
+                         "Modern adaptation and technological shifts.", command=go_to_digital_age)
     card4.pack(fill="x", padx=20, pady=10)
-
 
     # ---------------- RIGHT SIDEBAR ---------------- #
 
@@ -254,16 +261,14 @@ def create_layout(app):
 
     right_sidebar.pack_propagate(False)
     right_sidebar.pack(side="right", fill="y")
-    
+
     dyk_title = ctk.CTkLabel(
-        right_sidebar, 
-        text="Did You Know...?", 
-        font=("Poppins", 14, "bold"), 
+        right_sidebar,
+        text="Did You Know...?",
+        font=("Poppins", 14, "bold"),
         text_color="white"
     )
     dyk_title.pack(anchor="w", padx=15, pady=(15, 9))
-
-   
 
     Third = ctk.CTkFrame(
         right_sidebar,
@@ -275,13 +280,12 @@ def create_layout(app):
     Third.pack_propagate(False)
     Third.pack(fill="x", padx=15, pady=5)
 
-    dyk_img_file = ctk.CTkImage(Image.open("10.jpeg"), size=(150, 80)) 
+    dyk_img_file = ctk.CTkImage(Image.open("10.jpeg"), size=(150, 80))
     dyk_img = ctk.CTkLabel(Third, image=dyk_img_file, text="",)
     dyk_img.pack(pady=(10, 5))
-    
 
     dyk_text = ctk.CTkLabel(
-        Third, 
+        Third,
         text="☏Before smartphones,\ncommunication relied on letters\nand messengers (Town Criers).",
         font=("Exo", 10),
         text_color="black"
@@ -289,14 +293,13 @@ def create_layout(app):
     dyk_text.pack(pady=5)
 
     losing_title = ctk.CTkLabel(
-        right_sidebar, 
-        text="What We're Losing", 
-        font=("Poppins", 14, "bold"), 
+        right_sidebar,
+        text="What We're Losing",
+        font=("Poppins", 14, "bold"),
         text_color="white"
     )
     losing_title.pack(anchor="w", padx=15, pady=(10, 0))
 
-   
     losing_texts = [
         "Many indigenous languages are\ndisappearing",
         "Traditional clothing is now\nmostly worn at events",
@@ -313,21 +316,21 @@ def create_layout(app):
         )
         card.pack_propagate(False)
         card.pack(fill="x", padx=15, pady=5)
-        
+
         losing_lbl = ctk.CTkLabel(
-            card, 
-            text=losing_texts[i], 
-            font=("Poppins", 9, "bold"), 
+            card,
+            text=losing_texts[i],
+            font=("Poppins", 9, "bold"),
             text_color="black",
             justify="center"
         )
         losing_lbl.pack(fill="both", expand=True, padx=10)
     saved_title = ctk.CTkLabel(
-        right_sidebar, 
-        text="Saved Items", 
-        font=("Poppins", 14 ), 
+        right_sidebar,
+        text="Saved Items",
+        font=("Poppins", 14),
         text_color="white",
-        
+
     )
     saved_title.pack(anchor="w", padx=15, pady=(10, 0))
 
@@ -342,20 +345,21 @@ def create_layout(app):
     fourth.pack_propagate(False)
     fourth.pack(fill="x", padx=15, pady=5)
     saved_text = ctk.CTkLabel(
-        fourth, 
-        text="You haven't saved anything yet!", 
-        font=("Poppins", 10, "bold"), 
+        fourth,
+        text="You haven't saved anything yet!",
+        font=("Poppins", 10, "bold"),
         text_color="black",
-        
-    
+
+
     )
     saved_text.pack(fill="both", expand=True)
-        
+
     return main_frame
 
 # In your main script/file:
 
 # ---------------- APP WINDOW ---------------- #
+
 
 app = ctk.CTk()
 

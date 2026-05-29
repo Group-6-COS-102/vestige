@@ -2,6 +2,9 @@ import customtkinter as ctk
 from PIL import Image
 
 from ui.theme import PRIMARY_BLUE, TEXT_WHITE
+from pages.timeline import TimelinePage
+from pages.tvn import TVNPage
+from ui.timeline_preview import create_timeline_preview
 
 # tvn cards function
 
@@ -60,64 +63,13 @@ def create_card(parent, title, image_path, icon_path, command=None):
     )
     icon_label.pack(anchor="w", pady=(10, 0))
 
-    return card
-
-# timleine preview function
-
-
-def create_timeline_preview(parent, title, subheading, command=None):
-    card = ctk.CTkFrame(
-        parent,
-        height=150,
-        corner_radius=20,
-        fg_color="#2D5B94",
-    )
-    card.pack(fill="x", pady=10)
-    card.pack_propagate(False)
-
-    content = ctk.CTkFrame(card, fg_color="transparent")
-    content.pack(fill="both", expand=True, padx=15, pady=15)
-
-    left_side = ctk.CTkFrame(content, fg_color="transparent")
-    left_side.pack(side="left", fill="y")
-
-    circle = ctk.CTkLabel(
-        left_side,
-        text="●",
-        font=("Arial", 40),
-        text_color="white"
-    )
-    circle.pack(side="left", pady=(0, 12))
-
-    text_frame = ctk.CTkFrame(content, fg_color="transparent")
-    text_frame.pack(side="left")
-
-    title_label = ctk.CTkLabel(
-        text_frame,
-        text=title,
-        font=("Konkhmer Sleokchher", 25, "bold"),
-        text_color="white"
-    )
-    title_label.pack(anchor="w")
-
-    # subheading
-    subheading_label = ctk.CTkLabel(
-        text_frame,
-        text=subheading,
-        font=("Konkhmer Sleokchher", 20),
-        text_color="white"
-    )
-    subheading_label.pack(anchor="w", pady=(5, 0))
-
     if command:
         widgets = [
             card,
-            content,
-            left_side,
-            circle,
-            text_frame,
+            image_label,
+            right_side,
             title_label,
-            subheading_label
+            icon_label
         ]
         for widget in widgets:
             widget.bind("<Button-1>", lambda e: command())
@@ -127,7 +79,7 @@ def create_timeline_preview(parent, title, subheading, command=None):
 
 class HomePage(ctk.CTkFrame):
 
-    def __init__(self, parent, tvn_command, timeline_command):
+    def __init__(self, parent, navigate):
         super().__init__(parent)
 
         # top section tvn cards
@@ -156,7 +108,8 @@ class HomePage(ctk.CTkFrame):
             card_grid,
             "Fashion",
             "assets/pictures/23.jpeg",
-            "assets/icons/handbag.png"
+            "assets/icons/handbag.png",
+            command=lambda: navigate(TVNPage, navigate=navigate)
         )
         card1.grid(row=0, column=0, padx=10, pady=10, sticky="nsew")
 
@@ -164,7 +117,8 @@ class HomePage(ctk.CTkFrame):
             card_grid,
             "Food",
             "assets/pictures/2.jpeg",
-            "assets/icons/hamburger.png"
+            "assets/icons/hamburger.png",
+            command=lambda: navigate(TVNPage, navigate=navigate)
         )
         card2.grid(row=0, column=1, padx=10, pady=10, sticky="nsew")
 
@@ -172,7 +126,8 @@ class HomePage(ctk.CTkFrame):
             card_grid,
             "Communication",
             "assets/pictures/33.jpeg",
-            "assets/icons/phone-call.png"
+            "assets/icons/phone-call.png",
+            command=lambda: navigate(TVNPage, navigate=navigate)
         )
         card3.grid(row=1, column=0, padx=10, pady=10, sticky="nsew")
 
@@ -180,7 +135,8 @@ class HomePage(ctk.CTkFrame):
             card_grid,
             "Entertainment",
             "assets/pictures/7.jpeg",
-            "assets/icons/tv.png"
+            "assets/icons/tv.png",
+            command=lambda: navigate(TVNPage, navigate=navigate)
         )
         card4.grid(row=1, column=1, padx=10, pady=10, sticky="nsew")
 
@@ -189,33 +145,33 @@ class HomePage(ctk.CTkFrame):
             bottom_section,
             "Pre-colonial Era",
             "Traditional Kingdoms, Oral Story Telling, Indigenous Languages",
-            command=timeline_command
+            command=lambda: navigate(TimelinePage, navigate=navigate)
         )
 
         create_timeline_preview(
             bottom_section,
             "Colonial Era",
             "Western Education and Cultural Influences",
-            command=timeline_command
+            command=lambda: navigate(TimelinePage, navigate=navigate)
         )
 
         create_timeline_preview(
             bottom_section,
             "Independence",
             "National Identity and Cultural Revival",
-            command=timeline_command
+            command=lambda: navigate(TimelinePage, navigate=navigate)
         )
 
         create_timeline_preview(
             bottom_section,
             "Digital Age",
             "Smartphones, Social Media, Globalization",
-            command=timeline_command
+            command=lambda: navigate(TimelinePage, navigate=navigate)
         )
 
         create_timeline_preview(
             bottom_section,
             "Future Age",
             "AI, Virtual Reality, Cultural Fusion",
-            command=timeline_command
+            command=lambda: navigate(TimelinePage, navigate=navigate)
         )

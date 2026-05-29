@@ -4,6 +4,7 @@ from ui.layout import create_layout
 from pages.home import HomePage
 from pages.timeline import TimelinePage
 from pages.tvn import TVNPage
+from pages.ltr import LTRPage
 
 
 class Dashboard(ctk.CTkFrame):
@@ -14,24 +15,30 @@ class Dashboard(ctk.CTkFrame):
 
         self.container = create_layout(
             self,
-            home_command=lambda: self.show_content(HomePage),
-            timeline_command=lambda: self.show_content(TimelinePage),
-            tvn_command=lambda: self.show_content(TVNPage),
+            home_command=lambda: self.show_content(
+                HomePage, navigate=self.show_content),
+            timeline_command=lambda: self.show_content(
+                TimelinePage, navigate=self.show_content),
+            tvn_command=lambda: self.show_content(
+                TVNPage, navigate=self.show_content),
+            ltr_command=lambda: self.show_content(LTRPage)
         )
 
         # showing the homepage initially
-        self.show_content(HomePage)
 
-    def show_content(self, page_class):
+        self.show_content(
+            HomePage,
+            navigate=self.show_content
+        )
+
+    def show_content(self, page_class, **kwargs):
         # destroy existing content
         for widget in self.container.winfo_children():
             widget.destroy()
 
-        if page_class == HomePage:
-            page_class(
-                self.container,
-                tvn_command=lambda: self.show_content(TVNPage),
-                timeline_command=lambda: self.show_content(TimelinePage)
-            )
-        else:
-            page_class(self.container)
+            if isinstance(page_class, str):
+                if page_class == "tvn":
+                    from pages.tvn import TVNPage
+                    page_class = TVNPage
+
+        page_class(self.container, **kwargs)
