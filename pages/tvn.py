@@ -1,6 +1,8 @@
 import customtkinter as ctk
 from PIL import Image
 
+from pages.tvn_overlay.communication import CommunicationPage
+
 
 def create_tvn_card(parent, title, subheading, image_path, command=None):
     card = ctk.CTkFrame(
@@ -38,8 +40,8 @@ def create_tvn_card(parent, title, subheading, image_path, command=None):
     title_label = ctk.CTkLabel(
         right_side,
         text=title,
-        font=("Konkhmer Sleokchher", 24, "bold"),
-        text_color="#333"
+        font=("Konkhmer Sleokchher", 27, "bold"),
+        text_color="#3D6FB4"
     )
     title_label.pack(anchor="w")
 
@@ -47,18 +49,30 @@ def create_tvn_card(parent, title, subheading, image_path, command=None):
     subheading_label = ctk.CTkLabel(
         right_side,
         text=subheading,
-        font=("Konkhmer Sleokchher", 15),
+        font=("Konkhmer Sleokchher", 23, "bold"),
         justify="left",
-        text_color="#555"
+        text_color="#4E2626"
     )
     subheading_label.pack(anchor="w", pady=(10, 0))
+
+    if command:
+        widgets = [
+            card,
+            image_label,
+            right_side,
+            title_label,
+            subheading_label
+        ]
+
+        for widget in widgets:
+            widget.bind("<Button-1>", lambda e: command())
 
     return card
 
 
 class TVNPage(ctk.CTkFrame):
 
-    def __init__(self, parent):
+    def __init__(self, parent, navigate):
         super().__init__(parent)
 
         self.pack(fill="both", expand=True)
@@ -67,7 +81,7 @@ class TVNPage(ctk.CTkFrame):
             self,
             text="Then VS Now",
             font=("Konkhmer Sleokchher", 30, "bold"),
-            text_color="#333"
+            text_color="#3D6FB4"
         )
         title.pack(anchor="w", padx=25, pady=(20, 10))
 
@@ -92,9 +106,10 @@ class TVNPage(ctk.CTkFrame):
 
         create_tvn_card(
             scroller,
-            "Commus",
+            "Comms",
             "From handwritten letters to instant messaging.",
-            "assets/pictures/33.jpeg"
+            "assets/pictures/33.jpeg",
+            command=lambda: navigate(CommunicationPage, navigate=navigate)
         )
 
         create_tvn_card(
