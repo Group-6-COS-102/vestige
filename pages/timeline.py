@@ -1,11 +1,12 @@
 import customtkinter as ctk
 
-from pages.home import create_timeline_preview
+from ui.timeline_preview import create_timeline_preview
+from pages.timelinefolder_copy.colonial import TimeColonialPage
 
 
 class TimelinePage(ctk.CTkFrame):
 
-    def __init__(self, parent):
+    def __init__(self, parent, navigate):
         super().__init__(parent)
 
         self.pack(fill="both", expand=True)
@@ -35,13 +36,15 @@ class TimelinePage(ctk.CTkFrame):
         create_timeline_preview(
             scroll_frame,
             "Pre-Colonial Era",
-            "Traditional kingdoms, trade routes and oral history."
+            "Traditional kingdoms, trade routes and oral history.",
         )
 
         create_timeline_preview(
             scroll_frame,
             "Colonial Era",
-            "British rule reshaped politics and education."
+            "British rule reshaped politics and education.",
+            command=lambda: navigate(
+                TimeColonialPage, navigate=navigate, back_page=TimelinePage)
         )
 
         create_timeline_preview(
